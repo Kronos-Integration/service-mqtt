@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@kronos-integration/service": "^11.2.8",
+    "attributes": "^0.1.337",
     "mqtt": "^5.13.1"
   }
 }

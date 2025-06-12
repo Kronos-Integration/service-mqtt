@@ -5,3 +5,21 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Known Vulnerabilities](https://snyk.io/test/github/Kronos-Integration/service-mqtt/badge.svg)](https://snyk.io/test/github/Kronos-Integration/service-mqtt)
 [![Coverage Status](https://coveralls.io/repos/Kronos-Integration/service-mqtt/badge.svg)](https://coveralls.io/github/Kronos-Integration/service-mqtt)
+
+# @kronos-integration/service-mqtt
+
+mqtt client
+
+# API
+
+# install
+
+With [npm](http://npmjs.org) do:
+
+```shell
+npm install @kronos-integration/service-mqtt
+```
+
+# license
+
+BSD-2-Clause
