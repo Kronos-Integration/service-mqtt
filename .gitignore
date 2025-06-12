@@ -1,0 +1,8 @@
+bun.lockb
+build
+.DS_Store
+*.log
+*.dump
+.test
+.tmp
+*.node
