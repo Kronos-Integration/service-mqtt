@@ -1,4 +1,5 @@
 [![License](https://img.shields.io/badge/License-0BSD-blue.svg)](https://spdx.org/licenses/0BSD.html)
+[![Typed with TypeScript](https://flat.badgen.net/badge/icon/Typed?icon=typescript\&label\&labelColor=blue\&color=555555)](https://typescriptlang.org)
 [![GitHub Issues](https://img.shields.io/github/issues/Kronos-Integration/service-mqtt.svg?style=flat-square)](https://github.com/Kronos-Integration/service-mqtt/issues)
 [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FKronos-Integration%2Fservice-mqtt%2Fbadge\&style=flat)](https://actions-badge.atrox.dev/Kronos-Integration/service-mqtt/goto)
 [![Styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
