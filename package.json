@@ -3,5 +3,16 @@
     "@kronos-integration/service": "^11.2.8",
     "attributes": "^0.1.337",
     "mqtt": "^5.13.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kronos-Integration/service-mqtt.git"
+  },
+  "template": {
+    "inheritFrom": [
+      "arlac77/template-arlac77-github",
+      "arlac77/template-kronos-component",
+      "arlac77/template-typescript"
+    ]
   }
 }
