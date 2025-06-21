@@ -45,10 +45,10 @@ export class ServiceMQTT extends Service {
   }
 
   /**
-   * On demand create RouteSendEndpoint´s.
+   * On demand create TopicEndpoint.
    * @param {string} name
    * @param {Object|string} definition
-   * @return {Class} RouteSendEndpoint if path is present of name starts with '/'
+   * @return {Class} TopicEndpoint if path is present of name starts with '/'
    */
   endpointFactoryFromConfig(name, definition, ic) {
 
