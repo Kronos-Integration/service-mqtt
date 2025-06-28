@@ -47,7 +47,7 @@ Returns **Class** TopicEndpoint if path is present of name starts with '/'
 
 ### name
 
-Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'http'
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 'mqtt'
 
 # install
 
