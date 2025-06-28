@@ -3,12 +3,14 @@ import { Service } from "@kronos-integration/service";
 import { connect } from "mqtt";
 import { TopicEndpoint } from "./topic-endpoint.mjs";
 
+export { TopicEndpoint };
+
 /**
  * MQTT client.
  */
 export class ServiceMQTT extends Service {
   /**
-   * @return {string} 'http'
+   * @return {string} 'mqtt'
    */
   static get name() {
     return "mqtt";

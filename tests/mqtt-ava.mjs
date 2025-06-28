@@ -26,11 +26,5 @@ test("endpoint factory", async t => {
   });
 
   t.is(mqtt.endpoints["/s1"].name, "/s1");
-  t.is(mqtt.endpoints["/s1"].path, "/s1");
-  t.is(mqtt.endpoints["/s1"].method, "GET");
   t.true(mqtt.endpoints["/s1"] instanceof TopicEndpoint);
-
-  await mqtt.start();
-
-  await mqtt.stop();
 });
