@@ -12,7 +12,7 @@
       "types": "./types/service-mqtt.d.mts"
     }
   },
-  "description": "http server",
+  "description": "MQTT service",
   "keywords": [
     "mqtt",
     "kronos-service"
