@@ -28,6 +28,18 @@ export class ServiceMQTT extends Service {
           needsRestart: true,
           type: "url"
         },
+        clean: {
+          type: "boolean"
+        },
+        clientId: {
+          type: "string"
+        },
+        connectTimeout: {
+          type: "integer"
+        },
+        reconnectPeriod: {
+          type: "integer"
+        },
         username: {
           type: "string"
         },
@@ -47,11 +59,24 @@ export class ServiceMQTT extends Service {
   }
 
   get options() {
-    return { username: this.username, password: this.password };
+    return Object.fromEntries(
+      [
+        "username",
+        "password",
+        "clean",
+        "clientId",
+        "connectTimeout",
+        "reconnectPeriod"
+      ]
+        .filter(key => this[key] !== undefined)
+        .map(key => [key, this[key]])
+    );
+
+    //return { username: this.username, password: this.password };
   }
 
   get topics() {
-    return Object.keys(this.endpoints).filter(e=>e.topic);
+    return Object.keys(this.endpoints).filter(e => e.topic);
   }
 
   /**
@@ -71,6 +96,7 @@ export class ServiceMQTT extends Service {
   async _start() {
     await super._start();
 
+    console.log(this.options);
     const client = connect(this.url, this.options);
 
     this.client = client;
