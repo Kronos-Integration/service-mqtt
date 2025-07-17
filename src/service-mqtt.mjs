@@ -41,7 +41,8 @@ export class ServiceMQTT extends Service {
           type: "integer"
         },
         username: {
-          type: "string"
+          type: "string",
+          private: true
         },
         password: {
           type: "string",
@@ -72,8 +73,6 @@ export class ServiceMQTT extends Service {
         .filter(key => this[key] !== undefined)
         .map(key => [key, this[key]])
     );
-
-    //return { username: this.username, password: this.password };
   }
 
   get topics() {
@@ -97,7 +96,6 @@ export class ServiceMQTT extends Service {
   async _start() {
     await super._start();
 
-    console.log(this.options);
     const client = connect(this.url, this.options);
 
     this.client = client;
