@@ -44,7 +44,8 @@ export class ServiceMQTT extends Service {
           type: "string"
         },
         password: {
-          type: "string"
+          type: "string",
+          private: true
         }
       }),
       Service.configurationAttributes
