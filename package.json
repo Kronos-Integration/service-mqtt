@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@kronos-integration/service": "^11.2.13",
-    "attributes": "^0.1.337",
+    "model-attributes": "^4.2.6",
     "mqtt": "^5.13.2"
   },
   "devDependencies": {
