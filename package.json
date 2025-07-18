@@ -38,7 +38,7 @@
   "dependencies": {
     "@kronos-integration/service": "^11.2.15",
     "model-attributes": "^4.3.0",
-    "mqtt": "^5.13.2"
+    "mqtt": "^5.13.3"
   },
   "devDependencies": {
     "@kronos-integration/test-interceptor": "^7.0.29",
