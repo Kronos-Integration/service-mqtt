@@ -46,5 +46,5 @@ test("start / stop", async t => {
 
   await mqtt.start();
 
-  t.is(mqtt.status, "running");
+  t.is(mqtt.state, "running");
 });
