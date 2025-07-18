@@ -19,6 +19,5 @@ test("endpoint factory", async t => {
 
   t.is(mqtt.endpoints["s1"].name, "s1");
   t.true(mqtt.endpoints["s1"] instanceof TopicEndpoint);
-
- // t.deepEqual(mqtt.topics, ["s1"]);
+  t.deepEqual(mqtt.topics, ["s1"]);
 });

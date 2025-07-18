@@ -1,4 +1,7 @@
-import { mergeAttributeDefinitions, prepareAttributesDefinitions } from "model-attributes";
+import {
+  mergeAttributeDefinitions,
+  prepareAttributesDefinitions
+} from "model-attributes";
 import { Service } from "@kronos-integration/service";
 import { connect } from "mqtt";
 import { TopicEndpoint } from "./topic-endpoint.mjs";
@@ -76,7 +79,9 @@ export class ServiceMQTT extends Service {
   }
 
   get topics() {
-    return Object.keys(this.endpoints).filter(e => e.topic);
+    return Object.values(this.endpoints)
+      .filter(e => e.topic)
+      .map(e => e.name);
   }
 
   /**
@@ -117,6 +122,7 @@ export class ServiceMQTT extends Service {
   }
 
   async _stop() {
+    await this.client.endAsync();
     return super._stop();
   }
 }
