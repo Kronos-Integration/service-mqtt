@@ -6,7 +6,6 @@ import { ServiceMQTT, TopicEndpoint } from "@kronos-integration/service-mqtt";
 
 test("endpoint factory", async t => {
   const sp = new StandaloneServiceProvider();
-
   const r1 = new ReceiveEndpoint("r1", sp);
   r1.receive = async () => "OK R1";
 
@@ -45,6 +44,8 @@ test("start / stop", async t => {
   t.is(mqtt.endpoints["s1"].name, "s1");
 
   await mqtt.start();
-
   t.is(mqtt.state, "running");
+
+  await mqtt.stop();
+  t.is(mqtt.state, "stopped");
 });
