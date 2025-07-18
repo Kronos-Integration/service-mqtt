@@ -1,4 +1,4 @@
-import { mergeAttributes, createAttributes } from "model-attributes";
+import { mergeAttributeDefinitions, prepareAttributesDefinitions } from "model-attributes";
 import { Service } from "@kronos-integration/service";
 import { connect } from "mqtt";
 import { TopicEndpoint } from "./topic-endpoint.mjs";
@@ -21,8 +21,8 @@ export class ServiceMQTT extends Service {
   }
 
   static get configurationAttributes() {
-    return mergeAttributes(
-      createAttributes({
+    return mergeAttributeDefinitions(
+      prepareAttributesDefinitions({
         url: {
           description: "url of the mqtt server",
           needsRestart: true,
