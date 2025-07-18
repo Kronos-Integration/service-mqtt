@@ -23,3 +23,28 @@ test("endpoint factory", async t => {
   t.true(mqtt.endpoints["s1"] instanceof TopicEndpoint);
   t.deepEqual(mqtt.topics, ["s1", "s2b"]);
 });
+
+test("start / stop", async t => {
+  const sp = new StandaloneServiceProvider();
+
+  const r1 = new ReceiveEndpoint("r1", sp);
+  r1.receive = async () => "OK R1";
+
+  const mqtt = await sp.declareService({
+    type: ServiceMQTT,
+    url: "mqtt://localhost",
+    clientId: "test",
+    clean: true,
+    connectTimeout: 4000,
+    reconnectPeriod: 1000,
+    endpoints: {
+      s1: { topic: true, connected: r1 }
+    }
+  });
+
+  t.is(mqtt.endpoints["s1"].name, "s1");
+
+  await mqtt.start();
+
+  t.is(mqtt.status, "running");
+});

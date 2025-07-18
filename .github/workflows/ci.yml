@@ -23,6 +23,13 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4.2.2
+      - name: Start Mosquitto
+        uses: namoshek/mosquitto-github-action@v1
+        with:
+          version: '1.6'
+          ports: '1883:1883 8883:8883'
+          config: ${{ github.workspace }}/.github/mosquitto/mosquitto.conf
+          container-name: 'mqtt'
       - name: prepare node
         uses: actions/setup-node@v4.4.0
         with:
