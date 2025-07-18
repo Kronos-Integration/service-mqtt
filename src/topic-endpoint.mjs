@@ -4,7 +4,7 @@ export class TopicEndpoint extends SendReceiveEndpoint {
   constructor(name, owner, options) {
     super(name, owner, options);
 
-    if (options.topic) {
+    if (typeof options.topic === "string") {
       this._topic = options.topic;
     }
   }

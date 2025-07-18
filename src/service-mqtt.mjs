@@ -81,7 +81,7 @@ export class ServiceMQTT extends Service {
   get topics() {
     return Object.values(this.endpoints)
       .filter(e => e.topic)
-      .map(e => e.name);
+      .map(e => e.topic);
   }
 
   /**

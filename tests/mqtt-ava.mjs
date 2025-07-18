@@ -13,11 +13,13 @@ test("endpoint factory", async t => {
   const mqtt = await sp.declareService({
     type: ServiceMQTT,
     endpoints: {
-      s1: { topic: "s1", connected: r1 }
+      s1: { topic: true, connected: r1 },
+      s2: { topic: "s2b", connected: r1 }
     }
   });
 
   t.is(mqtt.endpoints["s1"].name, "s1");
+  t.is(mqtt.endpoints["s2"].name, "s2");
   t.true(mqtt.endpoints["s1"] instanceof TopicEndpoint);
-  t.deepEqual(mqtt.topics, ["s1"]);
+  t.deepEqual(mqtt.topics, ["s1", "s2b"]);
 });
