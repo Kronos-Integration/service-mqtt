@@ -41,7 +41,6 @@
     "mqtt": "^5.13.3"
   },
   "devDependencies": {
-    "@kronos-integration/test-interceptor": "^7.0.29",
     "@types/node": "^24.0.15",
     "ava": "^6.4.1",
     "c8": "^10.1.3",
