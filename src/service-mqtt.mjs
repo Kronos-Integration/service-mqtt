@@ -1,7 +1,4 @@
-import {
-  mergeAttributeDefinitions,
-  prepareAttributesDefinitions
-} from "model-attributes";
+import { mergeAttributeDefinitions, prepareAttributesDefinitions } from "pacc";
 import { Service } from "@kronos-integration/service";
 import { connect } from "mqtt";
 import { TopicEndpoint } from "./topic-endpoint.mjs";
