@@ -113,7 +113,7 @@ export class ServiceMQTT extends Service {
     client.on("message", (topic, message) => {
       const ep = this.endpoints[topic];
       if (ep) {
-        ep.receive(message);
+        ep.send(message);
       }
     });
   }

@@ -27,7 +27,10 @@ test("start / stop", async t => {
   const sp = new StandaloneServiceProvider();
 
   const r1 = new ReceiveEndpoint("r1", sp);
-  r1.receive = async () => "OK R1";
+
+  const received = [];
+
+  r1.receive = async (message) => received.push(message);
 
   const mqtt = await sp.declareService({
     type: ServiceMQTT,

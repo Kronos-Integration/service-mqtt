@@ -1,6 +1,6 @@
-import { SendReceiveEndpoint } from "@kronos-integration/endpoint";
+import { SendEndpoint } from "@kronos-integration/endpoint";
 
-export class TopicEndpoint extends SendReceiveEndpoint {
+export class TopicEndpoint extends SendEndpoint {
   constructor(name, owner, options) {
     super(name, owner, options);
 
