@@ -1,9 +1,34 @@
-import { mergeAttributeDefinitions, prepareAttributesDefinitions } from "pacc";
+import {
+  prepareAttributesDefinitions,
+  default_attribute,
+  url_attribute,
+  boolean_attribute,
+  secret_attribute
+} from "pacc";
 import { Service } from "@kronos-integration/service";
 import { connect } from "mqtt";
 import { TopicEndpoint } from "./topic-endpoint.mjs";
 
 export { TopicEndpoint };
+
+const ATTRIBUTES = prepareAttributesDefinitions({
+  url: {
+    ...url_attribute,
+    description: "url of the mqtt server",
+    needsRestart: true
+  },
+  clean: boolean_attribute,
+  clientId: default_attribute,
+  connectTimeout: {
+    type: "integer"
+  },
+  reconnectPeriod: {
+    type: "integer"
+  },
+  username: secret_attribute,
+  password: secret_attribute,
+  ...Service.attributes
+});
 
 /**
  * MQTT client.
@@ -20,37 +45,8 @@ export class ServiceMQTT extends Service {
     return "mqtt client";
   }
 
-  static get configurationAttributes() {
-    return mergeAttributeDefinitions(
-      prepareAttributesDefinitions({
-        url: {
-          description: "url of the mqtt server",
-          needsRestart: true,
-          type: "url"
-        },
-        clean: {
-          type: "boolean"
-        },
-        clientId: {
-          type: "string"
-        },
-        connectTimeout: {
-          type: "integer"
-        },
-        reconnectPeriod: {
-          type: "integer"
-        },
-        username: {
-          type: "string",
-          private: true
-        },
-        password: {
-          type: "string",
-          private: true
-        }
-      }),
-      Service.configurationAttributes
-    );
+  static get attributes() {
+    return ATTRIBUTES;
   }
 
   /**

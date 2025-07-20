@@ -4,19 +4,27 @@ import { ReceiveEndpoint } from "@kronos-integration/endpoint";
 import { StandaloneServiceProvider } from "@kronos-integration/service";
 import { ServiceMQTT, TopicEndpoint } from "@kronos-integration/service-mqtt";
 
-test("endpoint factory", async t => {
+test("factory", async t => {
   const sp = new StandaloneServiceProvider();
   const r1 = new ReceiveEndpoint("r1", sp);
   r1.receive = async () => "OK R1";
 
   const mqtt = await sp.declareService({
     type: ServiceMQTT,
+    clean: true,
+    clientId: "test",
+    url: "mqtt://localhost",
     endpoints: {
       s1: { topic: true, connected: r1 },
       s2: { topic: "s2b", connected: r1 }
     }
   });
 
+  t.deepEqual(mqtt.options, {
+    clean: true,
+    clientId: "test"
+  });
+  t.is(mqtt.url, "mqtt://localhost");
   t.is(mqtt.endpoints["s1"].name, "s1");
   t.is(mqtt.endpoints["s2"].name, "s2");
   t.true(mqtt.endpoints["s1"] instanceof TopicEndpoint);
@@ -30,7 +38,7 @@ test("start / stop", async t => {
 
   const received = [];
 
-  r1.receive = async (message) => received.push(message);
+  r1.receive = async message => received.push(message);
 
   const mqtt = await sp.declareService({
     type: ServiceMQTT,
