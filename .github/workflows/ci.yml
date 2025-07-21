@@ -18,6 +18,7 @@ jobs:
         os:
           - ubuntu-latest
         node-version:
+          - 22.17.1
           - 24.4.1
     steps:
       - name: checkout
@@ -25,10 +26,10 @@ jobs:
       - name: Start Mosquitto
         uses: namoshek/mosquitto-github-action@v1
         with:
-          version: '2.0.22'
-          ports: '1883:1883 8883:8883'
+          version: 2.0.22
+          ports: 1883:1883 8883:8883
           config: ${{ github.workspace }}/.github/mosquitto/mosquitto.conf
-          container-name: 'mqtt'
+          container-name: mqtt
       - name: prepare node
         uses: actions/setup-node@v4.4.0
         with:
