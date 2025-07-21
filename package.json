@@ -38,7 +38,7 @@
   "dependencies": {
     "@kronos-integration/service": "^13.0.0",
     "mqtt": "^5.13.3",
-    "pacc": "^3.8.0"
+    "pacc": "^3.9.0"
   },
   "devDependencies": {
     "@types/node": "^24.0.15",
