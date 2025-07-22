@@ -11,25 +11,6 @@ import { TopicEndpoint } from "./topic-endpoint.mjs";
 
 export { TopicEndpoint };
 
-const ATTRIBUTES = prepareAttributesDefinitions({
-  url: {
-    ...url_attribute,
-    description: "url of the mqtt server",
-    needsRestart: true
-  },
-  clean: boolean_attribute,
-  clientId: default_attribute,
-  connectTimeout: {
-    type: "integer"
-  },
-  reconnectPeriod: {
-    type: "integer"
-  },
-  username: secret_attribute,
-  password: secret_attribute,
-  ...Service.attributes
-});
-
 /**
  * MQTT client.
  */
@@ -45,30 +26,32 @@ export class ServiceMQTT extends Service {
     return "mqtt client";
   }
 
-  static get attributes() {
-    return ATTRIBUTES;
-  }
+  static attributes = prepareAttributesDefinitions(
+    {
+      url: {
+        ...url_attribute,
+        description: "url of the mqtt server",
+        needsRestart: true
+      },
+      clean: boolean_attribute,
+      clientId: default_attribute,
+      connectTimeout: {
+        type: "integer"
+      },
+      reconnectPeriod: {
+        type: "integer"
+      },
+      username: secret_attribute,
+      password: secret_attribute
+    },
+    Service.attributes
+  );
 
   /**
    * @return {string} name with url
    */
   get extendetName() {
     return `${this.name}(${this.url})`;
-  }
-
-  get options() {
-    return Object.fromEntries(
-      [
-        "username",
-        "password",
-        "clean",
-        "clientId",
-        "connectTimeout",
-        "reconnectPeriod"
-      ]
-        .filter(key => this[key] !== undefined)
-        .map(key => [key, this[key]])
-    );
   }
 
   get topics() {
@@ -94,7 +77,16 @@ export class ServiceMQTT extends Service {
   async _start() {
     await super._start();
 
-    const client = connect(this.url, this.options);
+    const options = Object.fromEntries(
+      ["clean", "clientId", "connectTimeout", "reconnectPeriod"]
+        .filter(key => this[key] !== undefined)
+        .map(key => [key, this[key]])
+    );
+
+    options.password = await this.password;
+    options.username = await this.username;
+
+    const client = connect(this.url, options);
 
     this.client = client;
 

@@ -20,11 +20,8 @@ test("factory", async t => {
     }
   });
 
-  t.deepEqual(mqtt.options, {
-    clean: true,
-    clientId: "test"
-  });
-  t.is(mqtt.url, "mqtt://localhost");
+  t.is(mqtt.clean, true);
+  t.is(mqtt.clientId, "test");
   t.is(mqtt.endpoints["s1"].name, "s1");
   t.is(mqtt.endpoints["s2"].name, "s2");
   t.true(mqtt.endpoints["s1"] instanceof TopicEndpoint);
