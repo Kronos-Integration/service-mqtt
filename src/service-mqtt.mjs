@@ -3,7 +3,8 @@ import {
   default_attribute,
   url_attribute,
   boolean_attribute,
-  secret_attribute
+  secret_attribute,
+  timeout_attribute
 } from "pacc";
 import { Service } from "@kronos-integration/service";
 import { connect } from "mqtt";
@@ -35,9 +36,7 @@ export class ServiceMQTT extends Service {
       },
       clean: boolean_attribute,
       clientId: default_attribute,
-      connectTimeout: {
-        type: "integer"
-      },
+      connectTimeout: timeout_attribute,
       reconnectPeriod: {
         type: "integer"
       },
