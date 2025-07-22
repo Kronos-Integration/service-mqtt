@@ -83,8 +83,8 @@ export class ServiceMQTT extends Service {
         .map(key => [key, this[key]])
     );
 
-    options.password = await this.password;
-    options.username = await this.username;
+    options.password = await this.getCredential("password");
+    options.username = await this.getCredential("username");
 
     const client = connect(this.url, options);
 
