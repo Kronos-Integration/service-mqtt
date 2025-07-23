@@ -3,7 +3,8 @@ import {
   default_attribute,
   url_attribute,
   boolean_attribute,
-  secret_attribute,
+  username_attribute,
+  password_attribute,
   timeout_attribute
 } from "pacc";
 import { Service } from "@kronos-integration/service";
@@ -34,14 +35,15 @@ export class ServiceMQTT extends Service {
         description: "url of the mqtt server",
         needsRestart: true
       },
-      clean: boolean_attribute,
-      clientId: default_attribute,
-      connectTimeout: timeout_attribute,
+      clean: { ...boolean_attribute, isConnectionOption: true },
+      clientId: { ...default_attribute, isConnectionOption: true },
+      connectTimeout: { ...timeout_attribute, isConnectionOption: true },
       reconnectPeriod: {
+        isConnectionOption: true,
         type: "integer"
       },
-      username: secret_attribute,
-      password: secret_attribute
+      username: username_attribute,
+      password: password_attribute
     },
     Service.attributes
   );
@@ -77,13 +79,16 @@ export class ServiceMQTT extends Service {
     await super._start();
 
     const options = Object.fromEntries(
-      ["clean", "clientId", "connectTimeout", "reconnectPeriod"]
-        .filter(key => this[key] !== undefined)
-        .map(key => [key, this[key]])
+      Object.entries(this.attributes)
+        .filter(
+          ([name, attribute]) =>
+            attribute.isConnectionOption && this[name] !== undefined
+        )
+        .map(([name]) => [name, this[name]])
     );
 
-    options.password = await this.getCredential("password");
     options.username = await this.getCredential("username");
+    options.password = await this.getCredential("password");
 
     const client = connect(this.url, options);
 
