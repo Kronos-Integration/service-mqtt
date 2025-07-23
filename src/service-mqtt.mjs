@@ -35,6 +35,11 @@ export class ServiceMQTT extends Service {
         description: "url of the mqtt server",
         needsRestart: true
       },
+      keepalive: {
+        ...default_attribute,
+        default: 60,
+        isConnectionOption: true
+      },
       clean: { ...boolean_attribute, isConnectionOption: true },
       clientId: { ...default_attribute, isConnectionOption: true },
       connectTimeout: { ...timeout_attribute, isConnectionOption: true },
@@ -90,6 +95,7 @@ export class ServiceMQTT extends Service {
     options.username = await this.getCredential("username");
     options.password = await this.getCredential("password");
 
+    console.log(options);
     const client = connect(this.url, options);
 
     this.client = client;
