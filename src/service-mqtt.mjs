@@ -95,7 +95,6 @@ export class ServiceMQTT extends Service {
     options.username = await this.getCredential("username");
     options.password = await this.getCredential("password");
 
-    console.log(options);
     const client = connect(this.url, options);
 
     this.client = client;
