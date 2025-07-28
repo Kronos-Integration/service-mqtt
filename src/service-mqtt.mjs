@@ -1,6 +1,6 @@
 import {
   prepareAttributesDefinitions,
-  default_attribute,
+  string_attribute,
   url_attribute,
   boolean_attribute,
   username_attribute,
@@ -37,12 +37,12 @@ export class ServiceMQTT extends Service {
         needsRestart: true
       },
       keepalive: {
-        ...default_attribute,
+        ...integer_attribute,
         default: 60,
         isConnectionOption: true
       },
       clean: { ...boolean_attribute, isConnectionOption: true },
-      clientId: { ...default_attribute, isConnectionOption: true },
+      clientId: { ...string_attribute, isConnectionOption: true },
       connectTimeout: { ...timeout_attribute, isConnectionOption: true },
       reconnectPeriod: {
         ...integer_attribute,
@@ -112,6 +112,9 @@ export class ServiceMQTT extends Service {
       const ep = this.endpoints[topic];
       if (ep) {
         ep.send(message);
+      }
+      else {
+        this.error(`no endpoint for topic ${topic}`);
       }
     });
   }

@@ -16,7 +16,8 @@ test("factory", async t => {
     url: "mqtt://localhost",
     endpoints: {
       s1: { topic: true, connected: r1 },
-      s2: { topic: "s2b", connected: r1 }
+      s2: { topic: "s2b", connected: r1 },
+      "s2/*/a": { topic: true, connected: r1 }
     }
   });
 
@@ -25,7 +26,7 @@ test("factory", async t => {
   t.is(mqtt.endpoints["s1"].name, "s1");
   t.is(mqtt.endpoints["s2"].name, "s2");
   t.true(mqtt.endpoints["s1"] instanceof TopicEndpoint);
-  t.deepEqual(mqtt.topics, ["s1", "s2b"]);
+  t.deepEqual(mqtt.topics, ["s1", "s2b", "s2/*/a"]);
 });
 
 test("start / stop", async t => {
