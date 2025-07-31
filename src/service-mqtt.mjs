@@ -1,6 +1,6 @@
 import {
   prepareAttributesDefinitions,
-  string_collection_attribute_writable,
+  string_attribute_writable,
   url_attribute,
   boolean_attribute_writable_false,
   username_attribute,
@@ -42,7 +42,7 @@ export class ServiceMQTT extends Service {
         isConnectionOption: true
       },
       clean: { ...boolean_attribute_writable_false, isConnectionOption: true },
-      clientId: { ...string_collection_attribute_writable, isConnectionOption: true },
+      clientId: { ...string_attribute_writable, isConnectionOption: true },
       connectTimeout: { ...timeout_attribute, isConnectionOption: true },
       reconnectPeriod: {
         ...integer_attribute_writable,
