@@ -1,12 +1,12 @@
 import {
   prepareAttributesDefinitions,
-  string_attribute,
+  string_collection_attribute_writable,
   url_attribute,
-  boolean_attribute,
+  boolean_attribute_writable_false,
   username_attribute,
   password_attribute,
   timeout_attribute,
-  integer_attribute
+  integer_attribute_writable
 } from "pacc";
 import { Service } from "@kronos-integration/service";
 import { connect } from "mqtt";
@@ -37,16 +37,16 @@ export class ServiceMQTT extends Service {
         needsRestart: true
       },
       keepalive: {
-        ...integer_attribute,
+        ...integer_attribute_writable,
         default: 60,
         isConnectionOption: true
       },
-      clean: { ...boolean_attribute, isConnectionOption: true },
-      clientId: { ...string_attribute, isConnectionOption: true },
+      clean: { ...boolean_attribute_writable_false, isConnectionOption: true },
+      clientId: { ...string_collection_attribute_writable, isConnectionOption: true },
       connectTimeout: { ...timeout_attribute, isConnectionOption: true },
       reconnectPeriod: {
-        ...integer_attribute,
-        isConnectionOption: true,
+        ...integer_attribute_writable,
+        isConnectionOption: true
       },
       username: username_attribute,
       password: password_attribute
@@ -112,8 +112,7 @@ export class ServiceMQTT extends Service {
       const ep = this.endpoints[topic];
       if (ep) {
         ep.send(message);
-      }
-      else {
+      } else {
         this.error(`no endpoint for topic ${topic}`);
       }
     });
