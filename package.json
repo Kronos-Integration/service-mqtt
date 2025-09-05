@@ -33,7 +33,7 @@
     "lint:docs": "documentation lint ./src/**/*.mjs"
   },
   "dependencies": {
-    "@kronos-integration/service": "^13.2.9",
+    "@kronos-integration/service": "^13.2.10",
     "mqtt": "^5.14.1",
     "pacc": "^4.9.0"
   },
