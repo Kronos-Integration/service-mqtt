@@ -39,6 +39,7 @@ export class ServiceMQTT extends Service {
       keepalive: {
         ...integer_attribute_writable,
         default: 60,
+        needsRestart: true,
         isConnectionOption: true
       },
       clean: { ...boolean_attribute_writable_false, isConnectionOption: true },
