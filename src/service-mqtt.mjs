@@ -1,4 +1,5 @@
 import {
+  getAttributesJSON,
   prepareAttributesDefinitions,
   string_attribute_writable,
   url_attribute,
@@ -40,17 +41,17 @@ export class ServiceMQTT extends Service {
         ...integer_attribute_writable,
         default: 60,
         needsRestart: true,
-        isConnectionOption: true
+        connectionOption: true
       },
-      clean: { ...boolean_attribute_writable_false, isConnectionOption: true },
-      clientId: { ...string_attribute_writable, isConnectionOption: true },
-      connectTimeout: { ...timeout_attribute, isConnectionOption: true },
+      clean: { ...boolean_attribute_writable_false, connectionOption: true },
+      clientId: { ...string_attribute_writable, connectionOption: true },
+      connectTimeout: { ...timeout_attribute, connectionOption: true },
       reconnectPeriod: {
         ...integer_attribute_writable,
-        isConnectionOption: true
+        connectionOption: true
       },
-      username: username_attribute,
-      password: password_attribute
+      username: { ...username_attribute, credential: true },
+      password: { ...password_attribute, credential: true }
     },
     Service.attributes
   );
@@ -85,13 +86,10 @@ export class ServiceMQTT extends Service {
   async _start() {
     await super._start();
 
-    const options = Object.fromEntries(
-      Object.entries(this.attributes)
-        .filter(
-          ([name, attribute]) =>
-            attribute.isConnectionOption && this[name] !== undefined
-        )
-        .map(([name]) => [name, this[name]])
+    const options = getAttributesJSON(
+      this,
+      this.attributes,
+      (name, attribute) => attribute.connectionOption
     );
 
     options.username = await this.getCredential("username");
