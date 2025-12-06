@@ -50,8 +50,8 @@ export class ServiceMQTT extends Service {
         ...integer_attribute_writable,
         connectionOption: true
       },
-      username: { ...username_attribute, credential: true },
-      password: { ...password_attribute, credential: true }
+      username: username_attribute,
+      password: password_attribute
     },
     Service.attributes
   );
@@ -86,16 +86,14 @@ export class ServiceMQTT extends Service {
   async _start() {
     await super._start();
 
-    const options = getAttributesJSON(
-      this,
-      this.attributes,
-      (name, attribute) => attribute.connectionOption
-    );
-
-    options.username = await this.getCredential("username");
-    options.password = await this.getCredential("password");
-
-    const client = connect(this.url, options);
+    const client = connect(this.url, {
+      ...getAttributesJSON(
+        this,
+        this.attributes,
+        (name, attribute) => attribute.connectionOption
+      ),
+      ...(await this.getCredentials())
+    });
 
     this.client = client;
 
