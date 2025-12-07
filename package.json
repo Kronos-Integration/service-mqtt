@@ -5,17 +5,18 @@
     "access": "public",
     "provenance": true
   },
+  "packageManager": "npm@11.6.4+sha512.1118cab46a05a50aee6bff5b1b4fa1df18afff89d57465620a3518035026955db87c5bdf9d207b07b7487d99f2490d450cb774655ad63ec2cba7bf1d0ad25d45",
   "types": "./types/service-mqtt.d.mts",
   "exports": {
     ".": {
-      "default": "./src/service-mqtt.mjs",
-      "types": "./types/service-mqtt.d.mts"
+      "types": "./types/service-mqtt.d.mts",
+      "default": "./src/service-mqtt.mjs"
     }
   },
   "description": "MQTT service",
   "keywords": [
-    "mqtt",
-    "kronos-service"
+    "kronos-service",
+    "mqtt"
   ],
   "contributors": [
     {
@@ -23,14 +24,14 @@
       "email": "markus.felten@gmx.de"
     }
   ],
-  "license": "BSD-2-Clause",
+  "license": "0BSD",
   "scripts": {
     "test": "node --run test:ava",
     "test:ava": "ava --timeout 4m tests/*-ava.mjs tests/*-ava-node.mjs",
     "cover": "c8 -x 'tests/**/*' --temp-directory build/tmp ava --timeout 4m tests/*-ava.mjs tests/*-ava-node.mjs && c8 report -r lcov -o build/coverage --temp-directory build/tmp",
-    "docs": "documentation readme --section=API ./src/**/*.mjs",
+    "docs": "documentation readme --section=API ./src**/*.mjs",
     "lint": "node --run lint:docs",
-    "lint:docs": "documentation lint ./src/**/*.mjs"
+    "lint:docs": "documentation lint ./src**/*.mjs"
   },
   "dependencies": {
     "@kronos-integration/service": "^15.1.1",
@@ -50,11 +51,14 @@
     "type": "git",
     "url": "git+https://github.com/Kronos-Integration/service-mqtt.git"
   },
+  "bugs": {
+    "url": "https://github.com/Kronos-Integration/service-mqtt/issues"
+  },
+  "homepage": "https://github.com/Kronos-Integration/service-mqtt#readme",
   "template": {
     "inheritFrom": [
       "arlac77/template-arlac77-github",
       "arlac77/template-kronos-component"
     ]
-  },
-  "packageManager": "npm@11.6.4+sha512.1118cab46a05a50aee6bff5b1b4fa1df18afff89d57465620a3518035026955db87c5bdf9d207b07b7487d99f2490d450cb774655ad63ec2cba7bf1d0ad25d45"
+  }
 }
