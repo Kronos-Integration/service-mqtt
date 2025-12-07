@@ -23,13 +23,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v6.0.1
-      - name: Start Mosquitto
-        uses: namoshek/mosquitto-github-action@v1
-        with:
-          version: 2.0.22
-          ports: 1883:1883 8883:8883
-          config: ${{ github.workspace }}/.github/mosquitto/mosquitto.conf
-          container-name: mqtt
       - name: prepare node
         uses: actions/setup-node@v6.1.0
         with:
@@ -46,6 +39,13 @@ jobs:
           path-to-lcov: build/coverage/lcov.info
           parallel: true
         continue-on-error: true
+      - name: Start Mosquitto
+        uses: namoshek/mosquitto-github-action@v1
+        with:
+          version: 2.0.22
+          ports: 1883:1883 8883:8883
+          config: ${{ github.workspace }}/.github/mosquitto/mosquitto.conf
+          container-name: mqtt
   release:
     needs:
       - test-node
