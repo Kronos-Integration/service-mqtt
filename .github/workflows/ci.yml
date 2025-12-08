@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v6.0.1
-      - name: Start Mosquitto
+      - name: prepare mosquitto
         uses: namoshek/mosquitto-github-action@v1
         with:
           version: 2.0.22
