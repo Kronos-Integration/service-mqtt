@@ -36,7 +36,7 @@
   "dependencies": {
     "@kronos-integration/service": "^15.4.27",
     "mqtt": "^5.15.0",
-    "pacc": "^8.11.1"
+    "pacc": "^8.11.2"
   },
   "devDependencies": {
     "ava": "^6.4.1",
