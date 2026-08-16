@@ -40,14 +40,28 @@ export class ServiceMQTT extends Service {
       keepalive: {
         ...integer_attribute_writable,
         default: 60,
+        name: "keepalive",
         needsRestart: true,
         connectionOption: true
       },
-      clean: { ...boolean_attribute_writable_false, connectionOption: true },
-      clientId: { ...string_attribute_writable, connectionOption: true },
-      connectTimeout: { ...timeout_attribute, connectionOption: true },
+      clean: {
+        ...boolean_attribute_writable_false,
+        name: "clean",
+        connectionOption: true
+      },
+      clientId: {
+        ...string_attribute_writable,
+        name: "clientId",
+        connectionOption: true
+      },
+      connectTimeout: {
+        ...timeout_attribute,
+        name: "connectTimeout",
+        connectionOption: true
+      },
       reconnectPeriod: {
         ...integer_attribute_writable,
+        name: "reconnectPeriod",
         connectionOption: true
       },
       username: username_attribute,
