@@ -130,7 +130,7 @@ export class ServiceMQTT extends Service {
   }
 
   async _stop() {
-    await this.client.endAsync();
+    await this.client?.endAsync();
     return super._stop();
   }
 }
