@@ -36,7 +36,7 @@
   "dependencies": {
     "@kronos-integration/service": "^15.7.38",
     "mqtt": "^5.16.1",
-    "pacc": "^14.0.1"
+    "pacc": "^14.4.0"
   },
   "devDependencies": {
     "ava": "^8.3.0",
@@ -45,7 +45,7 @@
     "semantic-release": "^25.0.9"
   },
   "engines": {
-    "node": ">=24.11.1"
+    "node": ">=26.13.0"
   },
   "repository": {
     "type": "git",
